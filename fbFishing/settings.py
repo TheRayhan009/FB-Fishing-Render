@@ -84,8 +84,8 @@ WSGI_APPLICATION = 'fbFishing.wsgi.application'
 # }
 
 DATABASES={
-    # "default":dj_database_url.parse("postgresql://lovefix_owner:X5y8mvPDWApa@ep-billowing-surf-a1qrsj1m.ap-southeast-1.aws.neon.tech/lovefix?sslmode=require")
-    "default":dj_database_url.parse("postgres://avnadmin:AVNS_ncEoX2QjndQWrd6GIzy@fbfishing-therayhan009.d.aivencloud.com:28633/defaultdb?sslmode=require")
+    
+    
     # "default":dj_database_url.parse(os.environ.get("DATABASES_URL"))
 }
 AUTH_PASSWORD_VALIDATORS = [
